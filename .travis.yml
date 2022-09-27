@@ -14,3 +14,9 @@ after_success:
   - docker build -t weinghwee/multi-nginx ./nginx
   - docker build -t weinghwee/multi-server ./server
   - docker build -t weinghwee/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stndin
+  # push those images to docker hub
+  - docker push weinghwee/multi-client
+  - docker push weinghwee/multi-nginx
+  - docker push weinghwee/multi-server
+  - docker push weinghwee/multi-worker
